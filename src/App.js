@@ -1,9 +1,11 @@
-import Navbar from "./components/Navbar";
+import Header from "./components/Navbar";
+import Homescreen from "./screens/Homescreen";
 
 function App() {
   return (
     <div>
-      <Navbar />
+      <Header />
+      <Homescreen />
     </div>
   );
 }

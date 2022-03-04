@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../logo.png";
 
-function Navbar() {
+function Header() {
   return (
     <div className="header-menu navbar-dark bg-dark">
     <nav className="navbar navbar-expand-lg ">
@@ -50,4 +50,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default Header;
