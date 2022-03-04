@@ -10,12 +10,48 @@ h2 {font-size: 34px;}
 h3 {font-size: 28px;}
 h4 {font-size: 16px;}
 
+nav {
+    color: white;
+}
+
+.header-menu {
+    min-height: 80vh;
+    max-height: 80vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url("./header.jpg") no-repeat center fixed;
+  }
+
+  .nav-link {
+      font-weight: 700;
+      font-size: 16px;
+      color: white !important;
+  }
+
+  .nav-link:hover {
+      text-decoration: underline;
+  }
+
+  #taglines {
+    color: #fff;
+    text-align: center;
+    margin-top: 20vh;
+    opacity: 5;
+  }
+  
+  .main-line {
+    font-size: 18px;
+  }
+  
+  .sub-line {
+    margin-top: 2%;
+    font-size: 46px;
+  }
 
 
 @media screen and (min-width: 992px) {
 
 .navbar {
-    max-height: 50px;
+    max-height: 70px;
 }
 
 }

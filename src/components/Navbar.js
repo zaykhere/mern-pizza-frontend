@@ -1,11 +1,13 @@
 import React from "react";
+import logo from "../logo.png";
 
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg shadow-lg p-3 mb-5 bg-body rounded navbar-light bg-light">
+    <div className="header-menu navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg ">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
-          Pizza Hub
+          <img src={logo} />
         </a>
         <button
           className="navbar-toggler"
@@ -20,6 +22,11 @@ function Navbar() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
+          <li className="nav-item">
+              <a className="nav-link" href="#">
+                Menu
+              </a>
+            </li>
             <li className="nav-item">
               <a className="nav-link" href="#">
                 Login
@@ -35,6 +42,11 @@ function Navbar() {
         </div>
       </div>
     </nav>
+    <div id="taglines">
+        <h4 class="main-line">THE BEST IN TOWN</h4>
+        <h2 class="sub-line">About our Pizzaria</h2>
+      </div>
+    </div>  
   );
 }
 
