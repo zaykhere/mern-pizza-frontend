@@ -1,12 +1,25 @@
 import React, { useState } from "react";
+import { Modal, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Pizza = ({ pizza }) => {
   const [quantity, setQuantity] = useState(1);
   const [varient, setVarient] = useState("small");
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
-    <div style={{marin: '70px'}} className="pizza-div shadow p-3 mb-5 bg-body rounded">
-      <h4> {pizza.name} </h4>
-      <img src={pizza.image} className="img-fluid pizza-img" />
+    <div
+      
+      className="pizza-div shadow p-3 mb-5 bg-body rounded"
+    >
+      <div onClick={handleShow}>
+        <h4> {pizza.name} </h4>
+        <img src={pizza.image} className="img-fluid pizza-img" />
+      </div>
 
       <div className="flex-container">
         <div className="m-1 w-100">
@@ -41,14 +54,33 @@ const Pizza = ({ pizza }) => {
       </div>
       <div className="flex-container">
         <div className="m-1 w-100">
-          <h5 className="mt-1"> Price: {pizza.prices[0][varient] * quantity} Rs. </h5>
+          <h5 className="mt-1">
+            {" "}
+            Price: {pizza.prices[0][varient] * quantity} Rs.{" "}
+          </h5>
         </div>
         <div className="m-1 w-100">
-            <button className="btn">
-                ADD TO CART
-            </button>
+          <button className="btn">ADD TO CART</button>
         </div>
       </div>
+
+
+
+      {show &&  ( <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton onClick={handleClose}>
+          <Modal.Title>{pizza.name}</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body className="text-center">
+          <img className="img-fluid" src={pizza.image} height="150" width="150" />
+          <p className="mt-3"> {pizza.description} </p>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button onClick={handleClose} variant="secondary">Close</Button>
+        </Modal.Footer>
+      </Modal>
+      )}
     </div>
   );
 };
