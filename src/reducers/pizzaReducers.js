@@ -1,13 +1,13 @@
 import { GET_PIZZAS_FAILED, GET_PIZZAS_REQUEST, GET_PIZZAS_SUCCESS } from "../constants/pizzaConstants";
 
-export const getAllPizzasReducer = (state={}, action) => {
+export const getAllPizzasReducer = (state={pizzas: []}, action) => {
     switch(action.type) {
         case GET_PIZZAS_REQUEST:
-            return {...state}
+            return {loading: true, ...state}
         case GET_PIZZAS_SUCCESS:
-            return {pizzas: action.payload, ...state}    
+            return {loading: false, pizzas: action.payload}    
         case GET_PIZZAS_FAILED:
-            return {error: action.payload, ...state}
+            return {loading: false, error: action.payload}
         default:
             return {...state}        
     }

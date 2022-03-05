@@ -32,7 +32,7 @@ const Pizza = ({ pizza }) => {
             }}
           >
             {pizza.varients.map((varient) => (
-              <option value={varient}> {varient} </option>
+              <option key={varient} value={varient}> {varient} </option>
             ))}
           </select>
         </div>
@@ -47,7 +47,7 @@ const Pizza = ({ pizza }) => {
             }}
           >
             {[...Array(10).keys()].map((x, i) => {
-              return <option value={i + 1}>{i + 1}</option>;
+              return <option key={i} value={i + 1}>{i + 1}</option>;
             })}
           </select>
         </div>

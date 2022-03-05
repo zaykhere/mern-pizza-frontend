@@ -43,8 +43,8 @@ function Header() {
       </div>
     </nav>
     <div id="taglines">
-        <h4 class="main-line">THE BEST IN TOWN</h4>
-        <h2 class="sub-line">About our Pizzaria</h2>
+        <h4 className="main-line">THE BEST IN TOWN</h4>
+        <h2 className="sub-line">About our Pizzaria</h2>
       </div>
     </div>  
   );
