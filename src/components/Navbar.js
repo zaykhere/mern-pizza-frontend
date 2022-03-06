@@ -1,7 +1,10 @@
 import React from "react";
 import logo from "../logo.png";
+import {useSelector, useDispatch} from 'react-redux';
 
 function Header() {
+  const cartState = useSelector(state=> state.cartReducer);
+
   return (
     <div className="header-menu navbar-dark bg-dark">
     <nav className="navbar navbar-expand-lg ">
@@ -34,7 +37,7 @@ function Header() {
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">
-                Cart
+                Cart {cartState.cartItems.length}
               </a>
             </li>
             
