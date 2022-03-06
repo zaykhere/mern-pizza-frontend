@@ -14,11 +14,12 @@ h5 {font-size: 14px !important;}
 
 nav {
     color: white;
+    margin-bottom: 0px !important;
 }
 
 .header-menu {
-    min-height: 90vh;
-    max-height: 90vh;
+    /* min-height: 90vh;
+    max-height: 90vh; */
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
       url("./header.jpg") no-repeat center fixed;
   }
@@ -75,6 +76,16 @@ nav {
 
   .pizza-div {
     font-size: 12px !important;
+  }
+
+  .icon {
+    cursor: pointer;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .hori-line {
+    width: 100%;
   }
 
 @media screen and (min-width: 992px) {

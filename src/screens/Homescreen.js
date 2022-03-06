@@ -14,6 +14,7 @@ const Homescreen = () => {
   }, []);
 
   return (
+    <>
     <div className="menu">
       <h2 className="text-center mt-3"> Our Menu </h2>
       <div className="row pizzas text-center mt-3">
@@ -36,6 +37,7 @@ const Homescreen = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 
