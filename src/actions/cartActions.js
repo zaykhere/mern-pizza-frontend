@@ -7,7 +7,7 @@ export const addToCart =
       _id: pizza._id,
       image: pizza.image,
       varient: varient,
-      quantity: quantity,
+      quantity: quantity > 0 ? quantity : 1 ,
       prices: pizza.prices,
       price: pizza.prices[0][varient] * quantity,
     };
