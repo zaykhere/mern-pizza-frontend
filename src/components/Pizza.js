@@ -48,7 +48,7 @@ const Pizza = ({ pizza }) => {
         <div className="m-1 w-100">
           <p> Quantity </p>
           <select
-            value={quantity}
+            value={parseInt(quantity)}
             className="form-control"
             onChange={(e) => {
               setQuantity(e.target.value);

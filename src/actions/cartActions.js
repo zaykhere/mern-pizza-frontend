@@ -7,12 +7,22 @@ export const addToCart =
       _id: pizza._id,
       image: pizza.image,
       varient: varient,
-      quantity: quantity > 0 ? quantity : 1 ,
+      quantity: Number(quantity) ,
       prices: pizza.prices,
       price: pizza.prices[0][varient] * quantity,
     };
-    dispatch({ type: ADD_TO_CART, payload: cartItem });
-    
+
+    if(parseInt(cartItem.quantity)>10) {
+      alert("You cannot add more than 10 quantities");
+    }
+    else {
+      if(cartItem.quantity<1) {
+        dispatch({type: DELETE_FROM_CART, payload: pizza});
+      }
+      else {
+        dispatch({ type: ADD_TO_CART, payload: cartItem });
+      }
+    }
     const cartItems = getState().cartReducer.cartItems;
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
     

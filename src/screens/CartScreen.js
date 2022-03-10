@@ -16,7 +16,7 @@ function CartScreen() {
         <div className="col-md-6">
           <h2> My Cart </h2>
           {cartItems.map((item) => (
-            <div className="flex-container">
+            <div key={item._id} className="flex-container">
               <div className="text-left m-1 w-100">
                 <h4>
                   {" "}
