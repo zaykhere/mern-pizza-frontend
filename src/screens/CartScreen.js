@@ -8,11 +8,13 @@ function CartScreen() {
   const cartState = useSelector((state) => state.cartReducer);
   const cartItems = cartState.cartItems;
 
+  let subtotal = cartItems.reduce((x, item) => x+item.price, 0);
+
   const dispatch = useDispatch();
 
   return (
     <>
-      <div className="row justify-content-center">
+      <div className="row justify-content-center m-3">
         <div className="col-md-6">
           <h2> My Cart </h2>
           {cartItems.map((item) => (
@@ -61,7 +63,10 @@ function CartScreen() {
             </div>
           ))}
         </div>
-        <div className="col-md-4"></div>
+        <div className="col-md-4 text-right">
+          <h2> SubTotal: {subtotal} /- </h2>
+          <button className="btn"> CheckOut</button>
+          </div>
       </div>
     </>
   );
