@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { addToCart } from "../actions/cartActions";
+import { addToCart, deleteFromCart } from "../actions/cartActions";
 
 function CartScreen() {
   const cartState = useSelector((state) => state.cartReducer);
@@ -53,6 +53,7 @@ function CartScreen() {
               <div className="m-1 w-100">
                 <FontAwesomeIcon
                   icon={faTrash}
+                  onClick={()=>{dispatch(deleteFromCart(item))}}
                   className="icon mt-5"
                   color="red"
                 />

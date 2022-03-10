@@ -1,4 +1,4 @@
-import { ADD_TO_CART } from "../constants/cartConstants";
+import { ADD_TO_CART, DELETE_FROM_CART } from "../constants/cartConstants";
 
 export const addToCart =
   (pizza, quantity, varient) => async (dispatch, getState) => {
@@ -17,3 +17,11 @@ export const addToCart =
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
     
   };
+
+
+export const deleteFromCart = (pizza) => async(dispatch, getState) => {
+  dispatch({type: DELETE_FROM_CART, payload: pizza});
+
+  const cartItems = getState().cartReducer.cartItems;
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+}  
