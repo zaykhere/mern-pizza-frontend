@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
+import {useDispatch, useSelector} from "react-redux";
+import { registerUser } from "../actions/userActions";
 
 function RegisterScreen() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
+
+  const dispatch = useDispatch();
 
   function register(e) {
     if(password!==confirmPass) {
@@ -15,7 +19,7 @@ function RegisterScreen() {
     }
     else {
         const user = {name, email, password};
-        console.log(user);
+        dispatch(registerUser(user));
     }
   }
 
