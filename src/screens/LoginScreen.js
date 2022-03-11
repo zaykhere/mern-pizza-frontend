@@ -1,8 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import {useSelector, useDispatch} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import { loginUser } from "../actions/userActions";
 
 function LoginScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');  
+
+  const dispatch = useDispatch();
+  let navigate = useNavigate();
+  const loginUserReducer = useSelector(state=>state.loginUserReducer);
+
+  const {token} = loginUserReducer;
+  console.log(token);
+  useEffect(() => {
+    if (token && token.length>0) {
+      console.log(token);
+      navigate("/");
+    }
+  }, [token])
 
   function login() {
     if(email==='' || password ==='') {
@@ -10,7 +26,7 @@ function LoginScreen() {
     }
     else {
         const user = {email, password};
-        console.log(user);
+        dispatch(loginUser(user));
     }
   }
 
