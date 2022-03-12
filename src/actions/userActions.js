@@ -32,8 +32,9 @@ export const loginUser = (user) => async (dispatch) => {
   try {
     const response = await axios.post("/api/users/login", user);
     if(response.data.token) {
-      dispatch({type: USER_LOGIN_SUCCESS, payload: response.data.token});
-      localStorage.setItem('token', JSON.stringify(response.data.token));
+      console.log(response.data);
+      dispatch({type: USER_LOGIN_SUCCESS, payload: response.data});
+      localStorage.setItem('userInfo', JSON.stringify(response.data));
     }
   } catch (error) {
     if(error.response && error.response.data) {

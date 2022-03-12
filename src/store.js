@@ -18,8 +18,8 @@ const cartItems = localStorage.getItem("cartItems")
   ? JSON.parse(localStorage.getItem("cartItems"))
   : [];
 
-const token = localStorage.getItem("token")
-  ? JSON.parse(localStorage.getItem("token"))
+const userInfo = localStorage.getItem("userInfo")
+  ? JSON.parse(localStorage.getItem("userInfo"))
   : [];  
 
 const initialState = {
@@ -27,7 +27,7 @@ const initialState = {
     cartItems: cartItems
   },
   loginUserReducer: {
-    token: token
+    userInfo: userInfo
   }
 };
 

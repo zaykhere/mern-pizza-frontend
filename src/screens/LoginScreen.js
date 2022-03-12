@@ -11,14 +11,13 @@ function LoginScreen() {
   let navigate = useNavigate();
   const loginUserReducer = useSelector(state=>state.loginUserReducer);
 
-  const {token} = loginUserReducer;
-  console.log(token);
+  const {userInfo} = loginUserReducer;
+  console.log(userInfo);
   useEffect(() => {
-    if (token && token.length>0) {
-      console.log(token);
+    if (userInfo && Object.entries(userInfo).length > 0) {
       navigate("/");
     }
-  }, [token])
+  }, [userInfo])
 
   function login() {
     if(email==='' || password ==='') {
