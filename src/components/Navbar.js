@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import logo from "../logo.png";
 import { useSelector, useDispatch } from "react-redux";
+import { logoutUser } from "../actions/userActions";
 
 function Header() {
   const cartState = useSelector((state) => state.cartReducer);
   const loginUserReducer = useSelector((state) => state.loginUserReducer);
   const { userInfo } = loginUserReducer;
+
+  const dispatch = useDispatch();
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
@@ -52,7 +55,13 @@ function Header() {
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a
+                      className="dropdown-item"
+                      onClick={() => {
+                        dispatch(logoutUser());
+                      }}
+                      href="#"
+                    >
                       Logout
                     </a>
                   </li>

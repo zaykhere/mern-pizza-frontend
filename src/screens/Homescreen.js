@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPizzas } from "../actions/pizzaActions";
+import Loading from "../components/Loading";
 import Pizza from "../components/Pizza";
+import Error from "../components/Error";
 
 const Homescreen = () => {
   const dispatch = useDispatch();
@@ -17,11 +19,11 @@ const Homescreen = () => {
     <>
     <div className="menu">
       <h2 className="text-center mt-3"> Our Menu </h2>
-      <div className="row pizzas text-center mt-3">
+      <div className="row justify-content-center pizzas text-center mt-3">
         {loading ? (
-          <h2> Loading </h2>
+          <Loading />
         ) : error ? (
-          <h1> Something went wrong</h1>
+          <Error error='Something went wrong' />
         ) : (
           <>
           {pizzas.map((pizza) => {
