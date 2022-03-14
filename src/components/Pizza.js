@@ -64,7 +64,7 @@ const Pizza = ({ pizza }) => {
         <div className="m-1 w-100">
           <h5 className="mt-1">
             {" "}
-            Price: {pizza.prices[0][varient] * quantity} Rs.{" "}
+            Price: {pizza.prices[0][varient] * quantity} USD.{" "}
           </h5>
         </div>
         <div className="m-1 w-100">

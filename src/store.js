@@ -6,12 +6,14 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { getAllPizzasReducer } from "./reducers/pizzaReducers";
 import { cartReducer } from "./reducers/cartReducers";
 import { loginUserReducer, registerUserReducer } from "./reducers/userReducers";
+import { placeOrderReducer } from "./reducers/orderReducers";
 
 const finalReducer = combineReducers({
   getAllPizzasReducer: getAllPizzasReducer,
   cartReducer: cartReducer,
   registerUserReducer: registerUserReducer,
-  loginUserReducer: loginUserReducer
+  loginUserReducer: loginUserReducer,
+  placeOrderReducer: placeOrderReducer
 });
 
 const cartItems = localStorage.getItem("cartItems")
