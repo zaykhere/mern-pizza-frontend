@@ -13,13 +13,20 @@ export const placeOrder = (token, subtotal) => async (dispatch, getState) => {
 
   const cartItems = getState().cartReducer.cartItems;
 
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: userToken,
+    },
+  };
+
   try {
     const response = await axios.post("/api/orders/placeorder", {
       token,
       subtotal,
       userToken,
       cartItems,
-    });
+    }, config);
     console.log(response);
     dispatch({ type: PLACE_ORDER_SUCCESS });
   } catch (error) {
