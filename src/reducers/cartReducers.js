@@ -18,11 +18,17 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
       }
 
     case DELETE_FROM_CART:
+      function filterId(pizza) {
+        return pizza.id != action.payload._id
+      }
+
+      function filterVarient(pizza) {
+        return pizza.varient != action.payload.varient
+      }
+
       return {
         ...state,
-        cartItems: state.cartItems.filter(
-          (item) => item._id !== action.payload._id
-        ),
+        cartItems: state.cartItems.filter(filterId).filter(filterVarient)
       };
 
     default:

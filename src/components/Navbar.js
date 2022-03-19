@@ -50,7 +50,7 @@ function Header() {
                   aria-labelledby="dropdownMenuButton1"
                 >
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a className="dropdown-item" href="/orders">
                       Orders
                     </a>
                   </li>
