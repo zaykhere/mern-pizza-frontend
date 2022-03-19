@@ -1,4 +1,5 @@
 import axios from "axios";
+import { DELETE_ALL_FROM_CART } from "../constants/cartConstants";
 import {
   GET_USER_ORDERS_FAILED,
   GET_USER_ORDERS_REQUEST,
@@ -32,6 +33,7 @@ export const placeOrder = (token, subtotal) => async (dispatch, getState) => {
     }, config);
     console.log(response);
     dispatch({ type: PLACE_ORDER_SUCCESS });
+    dispatch({type: DELETE_ALL_FROM_CART})
   } catch (error) {
     console.log(error);
     dispatch({ type: PLACE_ORDER_FAILED });

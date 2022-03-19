@@ -1,4 +1,4 @@
-import { ADD_TO_CART, DELETE_FROM_CART } from "../constants/cartConstants";
+import { ADD_TO_CART, DELETE_ALL_FROM_CART, DELETE_FROM_CART } from "../constants/cartConstants";
 
 export const cartReducer = (state = { cartItems: [] }, action) => {
   switch (action.type) {
@@ -30,6 +30,12 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
         ...state,
         cartItems: state.cartItems.filter(filterId).filter(filterVarient)
       };
+
+    case DELETE_ALL_FROM_CART: 
+      return {
+        ...state,
+        cartItems : []
+      }  
 
     default:
       return state;
