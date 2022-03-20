@@ -116,6 +116,26 @@ nav {
     flex-grow:  1;
   }
 
+  .admin-functions {
+    padding: 10px;
+    background-color: rgb(1,1,77);
+  }
+
+  .admin-functions li {
+    list-style-type: none;
+    display: inline !important;
+  }
+
+  .admin-functions li a {
+    color: white !important;
+    text-decoration: none;
+    padding: 20px;
+  }
+
+  .admin-functions li a:hover {
+    text-decoration: underline;
+  }
+
 
 @media screen and (min-width: 992px) {
 
