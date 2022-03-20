@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import { addPizza } from "../actions/pizzaActions";
+import {useDispatch, useSelector} from "react-redux";
+import Loading from "../components/Loading";
+import Error from "../components/Error";
+import Success from "../components/Success";
 
 function AddPizza() {
   const [name, setName] = useState("");
@@ -8,6 +13,11 @@ function AddPizza() {
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
+
+  const dispatch = useDispatch();
+
+  const addPizzaState = useSelector(state=> state.addPizzaReducer);
+  const {success, loading, error} = addPizzaState;
 
   function formHandler(e) {
     e.preventDefault();
@@ -25,12 +35,16 @@ function AddPizza() {
     }
 
     console.log(pizza);
+    dispatch(addPizza(pizza));
   }
 
   return (
     <div>
       <div className="text-left">
         <h3> Add Pizza </h3>
+        {loading && (<Loading />)}
+        {error && (<Error error={error} /> )}
+        {success && (<Success success="Your pizza has been added successfully"/>)}
         <form onSubmit={formHandler} >
           <input
             className="form-control"
