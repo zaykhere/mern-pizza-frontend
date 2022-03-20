@@ -5,6 +5,7 @@ import CartScreen from "./screens/CartScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import LoginScreen from "./screens/LoginScreen";
 import OrdersScreen from "./screens/OrdersScreen";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -12,11 +13,15 @@ function App() {
       <Header />
       <BrowserRouter>
         <Routes>
-        <Route path="/" element={<Homescreen />} />
-        <Route path="/cart" element={<CartScreen />} />
-        <Route path="/register" element={<RegisterScreen />} />
-        <Route path="/login" element={<LoginScreen />} />
-        <Route path="/orders" element={<OrdersScreen />} />
+        <Route exact path="/" element={<Homescreen />} />
+        <Route exact path="/cart" element={<CartScreen />} />
+        <Route exact path="/register" element={<RegisterScreen />} />
+        <Route exact path="/login" element={<LoginScreen />} />
+        <Route path="/orders" element={
+          <ProtectedRoute> 
+            <OrdersScreen />
+          </ProtectedRoute>
+        }  />
         </Routes>
       </BrowserRouter>
       
