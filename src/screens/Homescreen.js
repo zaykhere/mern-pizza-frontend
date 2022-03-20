@@ -4,6 +4,7 @@ import { getAllPizzas } from "../actions/pizzaActions";
 import Loading from "../components/Loading";
 import Pizza from "../components/Pizza";
 import Error from "../components/Error";
+import Filter from "../components/Filter";
 
 const Homescreen = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const Homescreen = () => {
     <>
     <div className="menu">
       <h2 className="text-center mt-3"> Our Menu </h2>
+      <Filter /> 
       <div className="row justify-content-center pizzas text-center mt-3">
         {loading ? (
           <Loading />
