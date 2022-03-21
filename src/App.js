@@ -8,6 +8,7 @@ import OrdersScreen from "./screens/OrdersScreen";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminScreen from "./screens/AdminScreen";
 import AdminRoute from "./components/AdminRoute";
+import EditPizza from "./screens/EditPizza";
 
 function App() {
   return (
@@ -29,7 +30,11 @@ function App() {
             <AdminScreen />
           </AdminRoute>
         } />
-       
+        <Route path="/admin/editpizza/:pizzaid" element={
+          <AdminRoute>
+            <EditPizza />
+          </AdminRoute>
+        } />
         </Routes>
       </BrowserRouter>
       

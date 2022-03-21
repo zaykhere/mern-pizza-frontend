@@ -3,10 +3,18 @@ import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
 import { composeWithDevTools } from "redux-devtools-extension";
-import { getAllPizzasReducer, addPizzaReducer } from "./reducers/pizzaReducers";
+import {
+  getAllPizzasReducer,
+  addPizzaReducer,
+  getPizzaByIdReducer,
+  editPizzaReducer,
+} from "./reducers/pizzaReducers";
 import { cartReducer } from "./reducers/cartReducers";
 import { loginUserReducer, registerUserReducer } from "./reducers/userReducers";
-import { placeOrderReducer, getUserOrdersReducer } from "./reducers/orderReducers";
+import {
+  placeOrderReducer,
+  getUserOrdersReducer,
+} from "./reducers/orderReducers";
 
 const finalReducer = combineReducers({
   getAllPizzasReducer: getAllPizzasReducer,
@@ -15,7 +23,9 @@ const finalReducer = combineReducers({
   loginUserReducer: loginUserReducer,
   placeOrderReducer: placeOrderReducer,
   getUserOrdersReducer: getUserOrdersReducer,
-  addPizzaReducer: addPizzaReducer
+  addPizzaReducer: addPizzaReducer,
+  getPizzaByIdReducer: getPizzaByIdReducer,
+  editPizzaReducer: editPizzaReducer
 });
 
 const cartItems = localStorage.getItem("cartItems")
@@ -24,15 +34,15 @@ const cartItems = localStorage.getItem("cartItems")
 
 const userInfo = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
-  : [];  
+  : [];
 
 const initialState = {
   cartReducer: {
-    cartItems: cartItems
+    cartItems: cartItems,
   },
   loginUserReducer: {
-    userInfo: userInfo
-  }
+    userInfo: userInfo,
+  },
 };
 
 const composeEnhancers = composeWithDevTools({});
