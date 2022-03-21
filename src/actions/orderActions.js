@@ -1,6 +1,9 @@
 import axios from "axios";
 import { DELETE_ALL_FROM_CART } from "../constants/cartConstants";
 import {
+  GET_ALL_ORDERS_FAILED,
+  GET_ALL_ORDERS_REQUEST,
+  GET_ALL_ORDERS_SUCCESS,
   GET_USER_ORDERS_FAILED,
   GET_USER_ORDERS_REQUEST,
   GET_USER_ORDERS_SUCCESS,
@@ -66,3 +69,55 @@ export const getUserOrders = () => async (dispatch, getState) => {
     dispatch({ type: GET_USER_ORDERS_FAILED, payload: error.message});
   }
 };
+
+export const getAllOrders = () => async (dispatch, getState) => {
+  let currentUser = getState().loginUserReducer.userInfo.token;
+  let userToken = `Bearer ${currentUser}`;
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: userToken,
+    },
+  };
+
+  dispatch({type: GET_ALL_ORDERS_REQUEST})  
+  try {
+    const response = await axios.get("/api/orders", config);
+    if(response.data.success) {
+    dispatch({type: GET_ALL_ORDERS_SUCCESS, payload: response.data.orders})
+    }
+    else {
+      dispatch({type: GET_ALL_ORDERS_FAILED, payload: response.data.error})
+    }
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: GET_ALL_ORDERS_FAILED, payload: error.message});
+  }
+};
+
+export const deliverOrder = (orderId) => async(dispatch, getState) => {
+  let currentUser = getState().loginUserReducer.userInfo.token;
+  let userToken = `Bearer ${currentUser}`;
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: userToken,
+    },
+  };
+  try {
+    const response = await axios.put(`/api/orders/deliver/${orderId}`, {}, config);
+    if(response.data.success) {
+    alert("Order Delivered");  
+    const orderResponse = await axios.get("/api/orders", config);  
+    dispatch({type: GET_ALL_ORDERS_SUCCESS, payload: orderResponse.data.orders})
+    }
+    else {
+      dispatch({type: GET_ALL_ORDERS_FAILED, payload: response.data.error})
+    }
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: GET_ALL_ORDERS_FAILED, payload: error.message});
+  }
+}

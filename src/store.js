@@ -14,6 +14,7 @@ import { loginUserReducer, registerUserReducer } from "./reducers/userReducers";
 import {
   placeOrderReducer,
   getUserOrdersReducer,
+  getAllOrdersReducer
 } from "./reducers/orderReducers";
 
 const finalReducer = combineReducers({
@@ -25,7 +26,8 @@ const finalReducer = combineReducers({
   getUserOrdersReducer: getUserOrdersReducer,
   addPizzaReducer: addPizzaReducer,
   getPizzaByIdReducer: getPizzaByIdReducer,
-  editPizzaReducer: editPizzaReducer
+  editPizzaReducer: editPizzaReducer,
+  getAllOrdersReducer: getAllOrdersReducer
 });
 
 const cartItems = localStorage.getItem("cartItems")
