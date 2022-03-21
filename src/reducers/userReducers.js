@@ -4,7 +4,10 @@ import {
   USER_REGISTER_SUCCESS,
   USER_LOGIN_FAILED,
   USER_LOGIN_SUCCESS,
-  USER_LOGIN_REQUEST
+  USER_LOGIN_REQUEST,
+  GET_USERS_REQUEST,
+  GET_USERS_SUCCESS,
+  GET_USERS_FAILED
 } from "../constants/userConstants";
 
 export const registerUserReducer = (state = {}, action) => {
@@ -33,5 +36,18 @@ export const loginUserReducer = (state = {}, action) => {
       return { loading: false, error: action.payload };
     default:
       return state;
+  }
+};
+
+export const getAllUsersReducer = (state = { users: [] }, action) => {
+  switch (action.type) {
+    case GET_USERS_REQUEST:
+      return { loading: true, ...state };
+    case GET_USERS_SUCCESS:
+      return { loading: false, users: action.payload };
+    case GET_USERS_FAILED:
+      return { loading: false, error: action.payload };
+    default:
+      return { ...state };
   }
 };

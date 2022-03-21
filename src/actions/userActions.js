@@ -5,7 +5,10 @@ import {
   USER_REGISTER_SUCCESS,
   USER_LOGIN_REQUEST,
   USER_LOGIN_FAILED,
-  USER_LOGIN_SUCCESS
+  USER_LOGIN_SUCCESS,
+  GET_USERS_REQUEST,
+  GET_USERS_SUCCESS,
+  GET_USERS_FAILED
 } from "../constants/userConstants";
 
 export const registerUser = (user) => async (dispatch) => {
@@ -49,3 +52,24 @@ export const logoutUser = () => async(dispatch) => {
   localStorage.removeItem("userInfo");
   window.location.href="/login";
 }
+
+export const getAllUsers = () => async (dispatch, getState) => {
+  let currentUser = getState().loginUserReducer.userInfo.token;
+  let userToken = `Bearer ${currentUser}`;
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: userToken,
+    },
+  };
+  dispatch({ type: GET_USERS_REQUEST });
+  try {
+    const response = await axios.get("/api/users/allusers", config);
+
+    dispatch({ type: GET_USERS_SUCCESS, payload: response.data.users });
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: GET_USERS_FAILED, payload: error.message });
+  }
+};

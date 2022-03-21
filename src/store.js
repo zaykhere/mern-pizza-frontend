@@ -10,7 +10,7 @@ import {
   editPizzaReducer,
 } from "./reducers/pizzaReducers";
 import { cartReducer } from "./reducers/cartReducers";
-import { loginUserReducer, registerUserReducer } from "./reducers/userReducers";
+import { loginUserReducer, registerUserReducer, getAllUsersReducer } from "./reducers/userReducers";
 import {
   placeOrderReducer,
   getUserOrdersReducer,
@@ -27,7 +27,8 @@ const finalReducer = combineReducers({
   addPizzaReducer: addPizzaReducer,
   getPizzaByIdReducer: getPizzaByIdReducer,
   editPizzaReducer: editPizzaReducer,
-  getAllOrdersReducer: getAllOrdersReducer
+  getAllOrdersReducer: getAllOrdersReducer,
+  getAllUsersReducer: getAllUsersReducer
 });
 
 const cartItems = localStorage.getItem("cartItems")
