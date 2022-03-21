@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPizzas } from "../actions/pizzaActions";
+import { deletePizza, getAllPizzas } from "../actions/pizzaActions";
 import Error from "../components/Error";
 import Loading from "../components/Loading";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -49,6 +49,7 @@ function PizzasList() {
                       icon={faTrash}
                       className="icon m-2"
                       color="red"
+                      onClick={()=>{dispatch(deletePizza(pizza._id))}}
                     />
                   <Link to={`/admin/editpizza/${pizza._id}`}>
                   <FontAwesomeIcon

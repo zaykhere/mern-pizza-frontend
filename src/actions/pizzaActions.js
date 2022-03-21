@@ -117,3 +117,24 @@ export const editPizza = (pizza) => async (dispatch, getState) => {
     dispatch({ type: EDIT_PIZZA_FAILED, payload: error.message });
   }
 };
+
+export const deletePizza = (pizzaId) => async(dispatch, getState) => {
+  let currentUser = getState().loginUserReducer.userInfo.token;
+ 
+  let userToken = `Bearer ${currentUser}`;
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: userToken,
+    },
+  };
+
+  try {
+    await axios.delete(`/api/pizza/${pizzaId}`, config);
+    alert("Pizza Deleted Successfully");
+    window.location.reload();
+  } catch (error) {
+    alert("Something went wrong");
+    console.log(error);
+  }
+}
