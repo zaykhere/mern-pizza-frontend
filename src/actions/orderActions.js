@@ -11,6 +11,7 @@ import {
   PLACE_ORDER_REQUEST,
   PLACE_ORDER_SUCCESS,
 } from "../constants/orderConstants";
+import api from "../api";
 
 export const placeOrder = (token, subtotal) => async (dispatch, getState) => {
   dispatch({ type: PLACE_ORDER_REQUEST });
@@ -28,7 +29,7 @@ export const placeOrder = (token, subtotal) => async (dispatch, getState) => {
   };
 
   try {
-    const response = await axios.post("/api/orders/placeorder", {
+    const response = await axios.post(`${api}/api/orders/placeorder`, {
       token,
       subtotal,
       userToken,
@@ -57,7 +58,7 @@ export const getUserOrders = () => async (dispatch, getState) => {
 
   dispatch({type: GET_USER_ORDERS_REQUEST})  
   try {
-    const response = await axios.get("/api/orders/myorders", config);
+    const response = await axios.get(`${api}/api/orders/myorders`, config);
     if(response.data.success) {
     dispatch({type: GET_USER_ORDERS_SUCCESS, payload: response.data.orders})
     }
@@ -83,7 +84,7 @@ export const getAllOrders = () => async (dispatch, getState) => {
 
   dispatch({type: GET_ALL_ORDERS_REQUEST})  
   try {
-    const response = await axios.get("/api/orders", config);
+    const response = await axios.get(`${api}/api/orders`, config);
     if(response.data.success) {
     dispatch({type: GET_ALL_ORDERS_SUCCESS, payload: response.data.orders})
     }
@@ -107,10 +108,10 @@ export const deliverOrder = (orderId) => async(dispatch, getState) => {
     },
   };
   try {
-    const response = await axios.put(`/api/orders/deliver/${orderId}`, {}, config);
+    const response = await axios.put(`${api}/api/orders/deliver/${orderId}`, {}, config);
     if(response.data.success) {
     alert("Order Delivered");  
-    const orderResponse = await axios.get("/api/orders", config);  
+    const orderResponse = await axios.get(`${api}/api/orders`, config);  
     dispatch({type: GET_ALL_ORDERS_SUCCESS, payload: orderResponse.data.orders})
     }
     else {

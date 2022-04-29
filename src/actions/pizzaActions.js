@@ -13,11 +13,12 @@ import {
   GET_PIZZA_ID_REQUEST,
   GET_PIZZA_ID_SUCCESS,
 } from "../constants/pizzaConstants";
+import api from "../api";
 
 export const getAllPizzas = () => async (dispatch) => {
   dispatch({ type: GET_PIZZAS_REQUEST });
   try {
-    const response = await axios.get("/api/pizza");
+    const response = await axios.get(`${api}/api/pizza`);
 
     dispatch({ type: GET_PIZZAS_SUCCESS, payload: response.data });
   } catch (error) {
@@ -29,7 +30,7 @@ export const getAllPizzas = () => async (dispatch) => {
 export const getPizzaById = (pizzaid) => async (dispatch) => {
   dispatch({ type: GET_PIZZA_ID_REQUEST });
   try {
-    const response = await axios.get(`/api/pizza/${pizzaid}`);
+    const response = await axios.get(`${api}/api/pizza/${pizzaid}`);
     console.log(response.data.data);
 
     dispatch({ type: GET_PIZZA_ID_SUCCESS, payload: response.data.data });
@@ -44,7 +45,7 @@ export const filterPizzas = (searchKey, category) => async (dispatch) => {
   searchKey = searchKey.toLowerCase();
   dispatch({ type: GET_PIZZAS_REQUEST });
   try {
-    const response = await axios.get("/api/pizza");
+    const response = await axios.get(`${api}/api/pizza`);
     filteredPizzas = response.data.filter((pizza) =>
       pizza.name.toLowerCase().includes(searchKey)
     );
@@ -79,7 +80,7 @@ export const addPizza = (pizza) => async (dispatch, getState) => {
     },
   };
   try {
-    const response = await axios.post("/api/pizza/addpizza", { pizza }, config);
+    const response = await axios.post(`${api}/api/pizza/addpizza`, { pizza }, config);
     console.log(response);
     dispatch({ type: ADD_PIZZA_SUCCESS });
   } catch (error) {
@@ -106,7 +107,7 @@ export const editPizza = (pizza) => async (dispatch, getState) => {
   };
   try {
     const response = await axios.put(
-      `/api/pizza/editpizza/${pizza.pizzaId}`,
+      `${api}/api/pizza/editpizza/${pizza.pizzaId}`,
       { pizza },
       config
     );
@@ -130,7 +131,7 @@ export const deletePizza = (pizzaId) => async(dispatch, getState) => {
   };
 
   try {
-    await axios.delete(`/api/pizza/${pizzaId}`, config);
+    await axios.delete(`${api}/api/pizza/${pizzaId}`, config);
     alert("Pizza Deleted Successfully");
     window.location.reload();
   } catch (error) {

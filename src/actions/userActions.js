@@ -10,11 +10,12 @@ import {
   GET_USERS_SUCCESS,
   GET_USERS_FAILED
 } from "../constants/userConstants";
+import api from "../api";
 
 export const registerUser = (user) => async (dispatch) => {
   dispatch({ type: USER_REGISTER_REQUEST });
   try {
-    const response = await axios.post("/api/users/register",  user );
+    const response = await axios.post(`${api}/api/users/register`,  user );
     if(response.data.success) {
       dispatch({ type: USER_REGISTER_SUCCESS });
     }
@@ -33,7 +34,7 @@ export const registerUser = (user) => async (dispatch) => {
 export const loginUser = (user) => async (dispatch) => {
   dispatch({type: USER_LOGIN_REQUEST});
   try {
-    const response = await axios.post("/api/users/login", user);
+    const response = await axios.post(`${api}/api/users/login`, user);
     if(response.data.token) {
       dispatch({type: USER_LOGIN_SUCCESS, payload: response.data});
       localStorage.setItem('userInfo', JSON.stringify(response.data));
@@ -65,7 +66,7 @@ export const getAllUsers = () => async (dispatch, getState) => {
   };
   dispatch({ type: GET_USERS_REQUEST });
   try {
-    const response = await axios.get("/api/users/allusers", config);
+    const response = await axios.get(`${api}/api/users/allusers`, config);
 
     dispatch({ type: GET_USERS_SUCCESS, payload: response.data.users });
   } catch (error) {
