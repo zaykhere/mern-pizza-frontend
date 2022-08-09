@@ -1,3 +1,3 @@
-const api = "http://localhost:8000";
+const api = "https://mern-pizza-backend.vercel.app";
 
 export default api;
